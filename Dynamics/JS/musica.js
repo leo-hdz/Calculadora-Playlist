@@ -44,7 +44,7 @@ class Cancion{
     {
         return this.artista;
     } 
-    setUrl()
+    setUrl(url)
     {
         this.url = url;
     }  
@@ -97,7 +97,7 @@ class ListaDeReproduccion
     push(objeto)
     {
         this.lista= this.lista.concat(objeto); 
-        console.log (objeto.nombre + " ha sido agregado a la lista de reproducción") 
+        console.log (`${objeto.nombre()} + " ha sido agregado a la lista de reproducción`) 
     }
 
     //Devuelve la longitud de la lista
@@ -105,21 +105,23 @@ class ListaDeReproduccion
     {
         let largo = this.lista.length
         console.log("El tamaño de la lista es de " + largo + " canciones");
+        return largo;
     }
     
     shuffle()
     {
         //Visto en clase
-        for (let i = 0; i < this.lista.length; i++)
-        {
-            let j= Math.floor(Math.random() * (i+1));
+        for (let i = this.lista.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
             intercambiar(this.lista, i, j);
         }
+        console.log("Lista mezclada aleatoriamente.");
     }
 
     //Devuelve la lista
     get()
     {
+        console.log("Contenido de la lista");
         console.log(...this.lista);
         return this.lista;
     }
@@ -127,8 +129,9 @@ class ListaDeReproduccion
     fusionar(listaDeReproduccion)
     {
         //Visto en clase
-        this.lista= listaDeReproduccion.get().concat(this.lista);
-    }
+         this.lista = this.lista.concat(listaDeReproduccion.get());
+        console.log("Listas fusionadas.");
+    }    
 
 }
 
