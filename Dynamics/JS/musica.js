@@ -4,14 +4,53 @@ class Cancion{
         /*
             Deben de asignar a los atributos que faltan de la clase Cancion como corresponda
         */
+        this.nombre = nombre;
+        this.id = id;
+        this.genero = genero;
+        this.artista = artista;
+        this.url = url;
         this.reproduciendo = false; 
     }
 
-    setNombre(nombre){
+    setNombre(nombre)
+    {
         this.nombre = nombre;
     }   
-    getNombre(){
+    getNombre()
+    {
         return this.nombre;
+    }
+    setId(id)
+    {
+        this.id = id;
+    }   
+    getId()
+    {
+        return this.id;
+    }
+    setGenero(genero)
+    {
+        this.genero = genero;
+    }   
+    getGenero(genero)
+    {
+        return this.genero;
+    }
+    setArtista(artista)
+    {
+        this.artista = artista;
+    }  
+    getArtista(artista)
+    {
+        return this.artista;
+    } 
+    setUrl(url)
+    {
+        this.url = url;
+    }  
+    getUrl()
+    {
+        return this.url;
     }
 
     /*
@@ -20,58 +59,85 @@ class Cancion{
     
 
     //Devuelve true si esta reproduciendo, false en otro caso
-    estaReproduciendo(){
-
+    estaReproduciendo()
+    {
+        console.log(this.reproduciendo);
     }
 
     //Cambia de no reproduciendo a reproduciendo
-    play(){
-        
+    play()
+    {
+        this.reproduciendo=true;
     }
 
     //Cambia de reproduciendo a no reproduciendo
-    stop(){
-        
+    stop()
+    {
+        this.reproduciendo=false;
     }
 }
 
-class ListaDeReproduccion{
-
-    constructor(arreglo){
-        this.lista = arreglo
+class ListaDeReproduccion
+{
+    constructor(arreglo)
+    {
+        this.lista = arreglo;
     }
     
     //Elimína el elemento del índice y lo devuelve
-    pop(indice){
+    pop(indice)
+    {
         //Pista: Investiguen el método splice(inicio,numero_de_elementos_a_borrar) dentro del objeto Array
+        this.lista.splice(indice, 1, null);
     }
 
     //Inserta un objeto canción dentro de la lista
-    push(objeto){
-        
+    push(objeto)
+    {
+        this.lista= this.lista.concat(objeto); 
+        console.log (objeto.nombre + " ha sido agregado a la lista de reproducción") 
     }
 
     //Devuelve la longitud de la lista
-    getSize(){
-        
+    getSize()
+    {
+        let largo = this.lista.length
+        console.log("El tamaño de la lista es de " + largo + " canciones");
     }
     
-    shuffle(){
+    shuffle()
+    {
         //Visto en clase
+        for (let i = 0; i < this.lista.length; i++)
+        {
+            let j= Math.floor(Math.random() * (i+1));
+            intercambiar(this.lista, i, j);
+        }
     }
 
     //Devuelve la lista
-    get(){
-        
+    get()
+    {
+        console.log(...this.lista);
+        return this.lista;
     }
 
-    fusionar(listaDeReproduccion){
+    fusionar(listaDeReproduccion)
+    {
         //Visto en clase
+        this.lista= listaDeReproduccion.get().concat(this.lista);
     }
 
 }
 
-canciones = [ 
+function intercambiar(arreglo, indiceA, indiceB)
+{
+    let c = arreglo[indiceA];
+    arreglo[indiceA] = arreglo[indiceB];
+    arreglo[indiceB] = c;
+}
+
+let canciones = [ 
   new Cancion("Bohemian Rhapsody", 1, "Rock", "Queen", "https://www.youtube.com/watch?v=yk3prd8GER4"),
   new Cancion("Billie Jean", 2, "Pop", "Michael Jackson", "https://www.youtube.com/watch?v=DKFS2tDsZRY"),
   new Cancion("Still D.R.E.", 3, "Hip Hop", "Dr. Dre ft. Snoop Dogg", "https://www.youtube.com/watch?v=BaFF4OkLOss"),
@@ -95,3 +161,34 @@ canciones = [
 ]
 
 //Probar codigo aqui
+let song= new Cancion ("【Ado】うっせぇわ (Usseewa)", 22, "Pop", "ADO", "https://youtu.be/Qp3b-RXtz4w?si=2e4weziPNdnwwJRL");
+let cancion= new Cancion("Underverse-Burning Souls [Opening Theme 2] [FULL VERSION]", 21, "Electro", "NyxTheShield OFFICIAL", "https://youtu.be/eodE8d2cGLk?si=1CNwHJQT-6NBZa6j");
+let misCanciones= [
+    new Cancion("Underverse-Burning Souls [Opening Theme 2] [FULL VERSION]", 21, "Electro", "NyxTheShield OFFICIAL", "https://youtu.be/eodE8d2cGLk?si=1CNwHJQT-6NBZa6j")
+]
+let lista1= new ListaDeReproduccion(canciones);
+let lista2= new ListaDeReproduccion(misCanciones);
+
+console.log(lista1.get());
+lista1.pop(5);
+
+console.log(lista1.get());
+lista1.shuffle();
+console.log(lista1.get());
+lista1.getSize();
+
+cancion.estaReproduciendo();
+cancion.play();
+cancion.estaReproduciendo();
+cancion.stop();
+cancion.estaReproduciendo();
+
+song.setNombre("Ussewa");
+song.getNombre();
+song.setGenero("J-pop");
+song.getGenero();
+
+lista1.fusionar(lista2);
+lista1.get();
+lista1.push(song);
+lista1.get();
