@@ -19,6 +19,7 @@ class Cancion{
     getNombre()
     {
         return this.nombre;
+        console.log(song.getNombre());
     }
     setId(id)
     {
@@ -35,6 +36,7 @@ class Cancion{
     getGenero()
     {
         return this.genero;
+        console.log(song.getNombre());
     }
     setArtista(artista)
     {
@@ -97,7 +99,7 @@ class ListaDeReproduccion
     push(objeto)
     {
         this.lista= this.lista.concat(objeto); 
-        console.log (`${objeto.nombre()} + " ha sido agregado a la lista de reproducción`) 
+        console.log (`${objeto.getNombre()} + " ha sido agregado a la lista de reproducción`) 
     }
 
     //Devuelve la longitud de la lista
@@ -134,6 +136,7 @@ class ListaDeReproduccion
         
 
 }
+}
 
 function intercambiar(arreglo, indiceA, indiceB)
 {
@@ -168,9 +171,8 @@ let canciones = [
 //Probar codigo aqui
 let song= new Cancion ("【Ado】うっせぇわ (Usseewa)", 22, "Pop", "ADO", "https://youtu.be/Qp3b-RXtz4w?si=2e4weziPNdnwwJRL");
 let cancion= new Cancion("Underverse-Burning Souls [Opening Theme 2] [FULL VERSION]", 21, "Electro", "NyxTheShield OFFICIAL", "https://youtu.be/eodE8d2cGLk?si=1CNwHJQT-6NBZa6j");
-let misCanciones= [
-    new Cancion("Underverse-Burning Souls [Opening Theme 2] [FULL VERSION]", 21, "Electro", "NyxTheShield OFFICIAL", "https://youtu.be/eodE8d2cGLk?si=1CNwHJQT-6NBZa6j")
-]
+
+let misCanciones= [cancion];
 let lista1= new ListaDeReproduccion(canciones);
 let lista2= new ListaDeReproduccion(misCanciones);
 
