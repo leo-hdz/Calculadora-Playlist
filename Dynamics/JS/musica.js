@@ -32,7 +32,7 @@ class Cancion{
     {
         this.genero = genero;
     }   
-    getGenero(genero)
+    getGenero()
     {
         return this.genero;
     }
@@ -40,11 +40,11 @@ class Cancion{
     {
         this.artista = artista;
     }  
-    getArtista(artista)
+    getArtista()
     {
         return this.artista;
     } 
-    setUrl(url)
+    setUrl()
     {
         this.url = url;
     }  
@@ -61,7 +61,8 @@ class Cancion{
     //Devuelve true si esta reproduciendo, false en otro caso
     estaReproduciendo()
     {
-        console.log(this.reproduciendo);
+        console.log("¿Está reproduciendo?:",this.reproduciendo);
+        return this.reproduciendo;
     }
 
     //Cambia de no reproduciendo a reproduciendo
@@ -87,8 +88,9 @@ class ListaDeReproduccion
     //Elimína el elemento del índice y lo devuelve
     pop(indice)
     {
-        //Pista: Investiguen el método splice(inicio,numero_de_elementos_a_borrar) dentro del objeto Array
-        this.lista.splice(indice, 1, null);
+      const eliminada = this.lista.splice(indice, 1)[0];
+      console.log(`Se eliminó la canción:${eliminada.getNombre()}`);
+      return eliminada;
     }
 
     //Inserta un objeto canción dentro de la lista
